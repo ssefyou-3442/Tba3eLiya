@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document Printing Service</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="signup-form" action="sendToTelegram.php" method="POST" enctype="multipart/form-data">
+                <h1>Impression en ligne</h1>
+                
+                <span>ou utiliser vos coordonnées pour l’inscription et l’envoi de documents</span>
+
+                
+                <input type="text" name="name" placeholder="Your Name" required>
+
+                
+                <input type="tel" name="phone" placeholder="Your Phone Number" required>
+
+               
+                <select id="delivery-option" name="deliveryOption" required>
+                    <option value="" disabled selected>Choisissez l’option de livraison</option>
+                    <option value="deliver">Livrer au bureau</option>
+                    <option value="pickup">Je vais ramasser</option>
+                </select>
+
+                
+                <input type="text" id="address" name="address" placeholder="Enter Your Address" style="display:none;">
+
+       
+                <input type="file" name="document" accept=".pdf" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in">
+            <form id="appointment-form" action="sendAppointment.php" method="POST">
+                <h1>Prendre rendez-vous</h1>
+                <span>Entrez vos coordonnées pour réserver votre visite</span>
+
+               
+                <input type="text" name="name" placeholder="Your Name" required>
+
+        
+                <input type="tel" name="phone" placeholder="Your Phone Number" required>
+
+               
+                <input type="date" name="date" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenue !</h1>
+                    <p>Entrez vos données personnelles pour gérer vos rendez-vous</p>
+                    <button class="hidden" id="login">Prendre rendez-vous</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Inscrivez-vous avec vos données personnelles pour utiliser nos services</p>
+                    <button class="hidden" id="register">Impression en ligne</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+
+    <script>
+       
+        const deliveryOption = document.getElementById('delivery-option');
+        const addressField = document.getElementById('address');
+
+        deliveryOption.addEventListener('change', function () {
+            if (this.value === 'deliver') {
+                addressField.style.display = 'block'; 
+                addressField.required = true; 
+            } else {
+                addressField.style.display = 'none'; 
+                addressField.required = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
